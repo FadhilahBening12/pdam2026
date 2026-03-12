@@ -1,14 +1,11 @@
 "use client";
-
 import { ReactNode, useEffect } from "react";
-
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
   children: ReactNode;
 }
-
 export default function Modal({ isOpen, onClose, title, children }: ModalProps) {
   // Disable scroll saat modal terbuka
   useEffect(() => {
@@ -17,14 +14,11 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
     } else {
       document.body.style.overflow = "auto";
     }
-
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [isOpen]);
-
+     }, [isOpen]);
   if (!isOpen) return null;
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
@@ -32,7 +26,6 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
-
       {/* Modal Content */}
       <div className="relative bg-white w-full max-w-lg mx-4 rounded-2xl shadow-xl p-6 animate-fadeIn">
         {/* Header */}
@@ -45,7 +38,6 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
             ✕
           </button>
         </div>
-
         {/* Body */}
         <div>{children}</div>
       </div>
